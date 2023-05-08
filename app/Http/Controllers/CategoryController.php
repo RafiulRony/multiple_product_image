@@ -11,6 +11,7 @@ class CategoryController extends Controller
 {
     public function all_categories(){
         $categories = Category::all();
+
         return view('categories',compact('categories'));
     }
     public function add_new_category(){

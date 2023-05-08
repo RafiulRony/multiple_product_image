@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
-    <title>add product</title>
+    <title>edit product</title>
 </head>
 <body>
 <div class="container">
@@ -14,10 +14,10 @@
             <div class="card">
                 <div class="card-header">
                     <div style="float:left;">
-                        <h2>{{ __('Add New Product') }}</h2>
+                        <h2>{{ __('Edit Product') }}</h2>
                     </div>
                     <div style="float:right;">
-                        <a class="btn btn-dark" href="{{ route('all.category') }}">{{ __('All Category') }}</a>
+                        <a class="btn btn-dark" href="{{ route('all.product') }}">{{ __('All Product') }}</a>
                     </div>
                 </div>
                 <div class="card-body">
@@ -33,30 +33,29 @@
                     @if(Session::has('msg'))
                         <p class="alert alert-success">{{ Session::get('msg') }}</p>
                     @endif
-                    <form action="{{ route('store.product') }}" method="post" enctype="multipart/form-data">
+                    <form action="{{ Route('update.product', $product->id) }}" method="post" enctype="multipart/form-data">
                     @csrf
 
                         <div class="form-group mb-3">
                             <label for="">Product Name</label>
-                            <input type="text" name="name" class="form-control">
+                            <input type="text" name="name" value={{ $product->name }} class="form-control">
                         </div>
                         <div class="form-group mb-3">
                             <label for="">Category Id</label>
-                            <input type="text" name="category_id" class="form-control">
+                            <input type="text" name="category_id" value={{ $product->category_id }} class="form-control">
                         </div>
                         <div class="form-group mb-3">
                             <label for="">Product Color</label>
-                            <input type="text" name="color" class="form-control">
+                            <input type="text" name="color" value={{ $product->color }} class="form-control">
                         </div>
                         <div class="form-group mb-3">
                             <label for="">Product Size</label>
-                            <input type="text" name="size" class="form-control">
+                            <input type="text" name="size" value={{ $product->size }} class="form-control">
                         </div>
-                        <div class="form-group mb-3">
+                        {{-- <div class="form-group mb-3">
                             <label for="">Product Image</label>
                             <input type="file" name="images[]" id="images" multiple>
-                            {{-- <input type="file" name="image" class="form-control"> --}}
-                        </div>
+                        </div> --}}
 
                         <button type="submit" class="btn btn-dark">submit</button>
                     </form>

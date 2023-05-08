@@ -17,6 +17,7 @@
                         <h2>{{ __('Categories') }}</h2>
                     </div>
                     <div style="float:right;">
+                        <a class="btn btn-dark" href="{{ route('all.product') }}">{{ __('All Product') }}</a>
                         <a class="btn btn-dark" href="{{ route('add.product') }}">{{ __('Add New product') }}</a>
                         <a class="btn btn-dark" href="{{ route('add.category') }}">{{ __('Add New Category') }}</a>
                     </div>
@@ -42,7 +43,7 @@
                                 <td>{{ $category->name }}</td>
                                 <td><img style="width:50px" src="{{ asset('category/images/'.$category->image) }}"></td>
                                 <td>
-                                    <a class="btn btn-success btn-sm" href="{{ route('all.product', $category->id) }}">{{ __('Products') }}</a>
+                                    <a class="btn btn-success btn-sm" href="{{ route('category.product', $category->id) }}">{{ __('Products') }}</a>
                                 </td>
                                 <td>
                                     <a class="btn btn-success btn-sm" href="{{ route('edit.category', $category->id) }}">{{ __('Edit') }}</a>

@@ -29,6 +29,7 @@
                             <tr>
                                 <th>{{ __('ID') }}</th>
                                 <th>{{ __('Product Name') }}</th>
+                                <th>{{ __('Category Id') }}</th>
                                 <th>{{ __('Color') }}</th>
                                 <th>{{ __('Size') }}</th>
                                 <th>{{ __('Image') }}</th>
@@ -38,21 +39,17 @@
                         <tbody>
                             @foreach($products as $key=>$product)
                             <tr>
-                                <td>{{ $product->id }}</td>
+                                <td>{{ $key+1 }}</td>
                                 <td>{{ $product->name }}</td>
+                                <td>{{ $product->category_id }}</td>
                                 <td>{{ $product->color }}</td>
                                 <td>{{ $product->size }}</td>
                                 <td>
-                                    @foreach($images as $key=>$image)
-                                    @if($product->id == $image->product_id)
-                                    {{-- <a href="{{ route('image.product', $product->id) }}">{{ __('Images') }}</a> --}}
-                                    <img style="width:50px" src="{{ asset('storage/products/images/'.$image->name) }}">
-                                    @endif
-                                    @endforeach
+                                    <a class="btn btn-success btn-sm" href="{{ route('image.product', $product->id) }}">{{ __('Images') }}</a>
                                 </td>
                                 <td>
-                                    <a class="btn btn-success btn-sm" href="{{ route('edit.product', $product->id) }}">{{ __('Edit') }}</a>
-                                    <a class="btn btn-danger btn-sm" href="{{ route('delete.product', $product->id) }}">{{ __('Delete') }}</a>
+                                    <a class="btn btn-success btn-sm" href="">{{ __('Edit') }}</a>
+                                    <a class="btn btn-danger btn-sm" href="">{{ __('Delete') }}</a>
                                 </td>
                             </tr>
                             @endforeach
