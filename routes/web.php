@@ -22,6 +22,8 @@ Route::get('/delete-category/{id}' ,[CategoryController::class, 'delete_category
 Route::get('/edit-category/{id}' ,[CategoryController::class, 'edit_category'])->name('edit.category');
 Route::post('/update-category/{id}' ,[CategoryController::class, 'update_category'])->name('update.category');
 
+Route::get('/check',[CategoryController::class, 'check']);
+
 
 Route::get('/category-product/{id}', [ProductController::class, 'category_product'])->name('category.product');
 Route::get('/add-product',[ProductController::class, 'add_product'])->name('add.product');

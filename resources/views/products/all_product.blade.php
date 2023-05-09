@@ -43,11 +43,8 @@
                                 <td>{{ $product->color }}</td>
                                 <td>{{ $product->size }}</td>
                                 <td>
-                                    @foreach($images as $key=>$image)
-                                    @if($product->id == $image->product_id)
-                                    {{-- <a href="{{ route('image.product', $product->id) }}">{{ __('Images') }}</a> --}}
-                                    <img style="width:50px" src="{{ asset('storage/products/images/'.$image->name) }}">
-                                    @endif
+                                    @foreach ($product->images as $image)
+                                        <img style="width:50px" src="{{ asset('storage/products/images/'.$image->name) }}">
                                     @endforeach
                                 </td>
                                 <td>

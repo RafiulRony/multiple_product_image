@@ -40,9 +40,17 @@
                             <label for="">Product Name</label>
                             <input type="text" name="name" value={{ $product->name }} class="form-control">
                         </div>
-                        <div class="form-group mb-3">
+                        {{-- <div class="form-group mb-3">
                             <label for="">Category Id</label>
                             <input type="text" name="category_id" value={{ $product->category_id }} class="form-control">
+                        </div> --}}
+                        <div class="form-group mb-3">
+                            <label for="">Category Id</label>
+                            <select name="category_id" class="form-control">
+                                @foreach ($categories as $category)
+                                    <option value="{{ $category->id }}" {{ $category->id == $product->category_id ? 'selected' : '' }}>{{ $category->name }}</option>
+                                @endforeach
+                            </select>
                         </div>
                         <div class="form-group mb-3">
                             <label for="">Product Color</label>
@@ -52,10 +60,15 @@
                             <label for="">Product Size</label>
                             <input type="text" name="size" value={{ $product->size }} class="form-control">
                         </div>
-                        {{-- <div class="form-group mb-3">
+                        <div class="form-group mb-3">
+                            @foreach ($product->images as $image)
+                                <img style="width:50px" src="{{ asset('storage/products/images/'.$image->name) }}">
+                            @endforeach
+                        </div>
+                        <div>
                             <label for="">Product Image</label>
                             <input type="file" name="images[]" id="images" multiple>
-                        </div> --}}
+                        </div>
 
                         <button type="submit" class="btn btn-dark">submit</button>
                     </form>
