@@ -17,7 +17,8 @@
                         <h2>{{ __('Products') }}</h2>
                     </div>
                     <div style="float:right;">
-                        <a class="btn btn-dark" href="{{ route('add.product') }}">{{ __('New') }}</a>
+                        <a class="btn btn-dark" href="{{ route('add.product') }}">{{ __('Add New product') }}</a>
+                        <a class="btn btn-dark" href="{{ route('all.category') }}">{{ __('All Category') }}</a>
                     </div>
                 </div>
                 <div class="card-body">

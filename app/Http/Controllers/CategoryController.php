@@ -39,7 +39,7 @@ class CategoryController extends Controller
         return redirect()->back();
     }
     public function delete_category($id){
-        $product = Category::findOrFail($id);
+        $product = Category::find($id);
         $deleteOldImage = 'category/images/' . $product->image;
         if (file_exists($deleteOldImage)) {
             @unlink(public_path($deleteOldImage));
@@ -49,11 +49,11 @@ class CategoryController extends Controller
         return redirect()->back();
     }
     public function edit_category($id){
-        $category = Category::findOrFail($id);
+        $category = Category::find($id);
         return view('edit_category', compact('category'));
     }
     public function update_category(Request $request, $id){
-        $category=Category::findOrFail($id);
+        $category=Category::find($id);
         $request->validate([
             'name' => 'required',
         ]);
@@ -74,8 +74,25 @@ class CategoryController extends Controller
         return redirect()->back();
     }
     public function check(){
-        $abd = Product::with(['category'])->get();
-        dd($abd->category->name);
-        return($abd->color);
+
+        // $numbers = range(1, 100);
+
+        $numbers = [];
+        for ($i = 0; $i < 100; $i++) {
+            $numbers[] = random_int(1, 1000);
+        }
+
+        $even = [];
+        $odd = [];
+        foreach ($numbers as $number) {
+            if ($number % 2 == 0) {
+                $even[] = $number;
+            } else {
+                $odd[] = $number;
+            }
+        }
+        echo "Even numbers: " . implode(",", $even);
+        echo '<br>';
+        echo "Odd numbers: " . implode(",", $odd);
     }
 }

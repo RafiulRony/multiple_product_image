@@ -33,3 +33,4 @@ Route::get('/all-product',[ProductController::class, 'all_product'])->name('all.
 Route::get('/delete-product/{id}',[ProductController::class, 'delete_product'])->name('delete.product');
 Route::get('/edit-product/{id}',[ProductController::class, 'edit_product'])->name('edit.product');
 Route::post('/update-product/{id}',[ProductController::class, 'update_product'])->name('update.product');
+// Route::get('/images-destroy/{id}',[ProductController::class, 'images-destroy'])->name('images.destroy');

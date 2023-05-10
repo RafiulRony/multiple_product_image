@@ -17,6 +17,8 @@
                         <h2>{{ __('Edit Category') }}</h2>
                     </div>
                     <div style="float:right;">
+                        <a class="btn btn-dark" href="{{ route('all.product') }}">{{ __('All Product') }}</a>
+                        <a class="btn btn-dark" href="{{ route('add.product') }}">{{ __('Add New product') }}</a>
                         <a class="btn btn-dark" href="{{ route('all.category') }}">{{ __('All Category') }}</a>
                     </div>
                 </div>
@@ -42,7 +44,7 @@
                         <div class="form-group mb-3">
                             <label for="">Category Image</label>
                             <img class="mb-3" style="width:50px" src="{{ asset('category/images/'.$category->image) }}">
-                            <input type="file" name="image" class="form-control">
+                            <input type="file" name="image"  class="form-control">
                         </div>
                         <button type="submit" class="btn btn-dark">submit</button>
                     </form>

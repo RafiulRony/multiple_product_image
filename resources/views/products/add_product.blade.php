@@ -17,6 +17,7 @@
                         <h2>{{ __('Add New Product') }}</h2>
                     </div>
                     <div style="float:right;">
+                        <a class="btn btn-dark" href="{{ route('all.product') }}">{{ __('All Product') }}</a>
                         <a class="btn btn-dark" href="{{ route('all.category') }}">{{ __('All Category') }}</a>
                     </div>
                 </div>

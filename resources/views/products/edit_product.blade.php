@@ -45,7 +45,7 @@
                             <input type="text" name="category_id" value={{ $product->category_id }} class="form-control">
                         </div> --}}
                         <div class="form-group mb-3">
-                            <label for="">Category Id</label>
+                            <label for="">Category Name</label>
                             <select name="category_id" class="form-control">
                                 @foreach ($categories as $category)
                                     <option value="{{ $category->id }}" {{ $category->id == $product->category_id ? 'selected' : '' }}>{{ $category->name }}</option>
@@ -69,6 +69,21 @@
                             <label for="">Product Image</label>
                             <input type="file" name="images[]" id="images" multiple>
                         </div>
+
+
+                        {{-- @foreach($product->images as $image)
+                            <div>
+                                <img src="{{ asset('storage/products/images/'.$image->name) }}" alt="{{ $image->name }}">
+                                <form action="{{ route('images.destroy', $image->id) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <input type="hidden" name="image_id" value="{{ $image->id }}">
+                                    <button type="submit">Delete</button>
+                                </form>
+                            </div>
+                        @endforeach --}}
+
+
 
                         <button type="submit" class="btn btn-dark">submit</button>
                     </form>

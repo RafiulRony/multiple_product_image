@@ -45,21 +45,8 @@ class ProductController extends Controller
                 'name'=>$imageName,
                 'product_id' => $p_id->id,
             ]);
-
-            // $products->images()->create([
-            //     'name' => $imageName,
-            // ]);
         }
-        // $imageName = '';
-        // $image = $request->file('image');
-        // if ($request->hasFile('image')) {
-        //     $imageName = time() . '_' . uniqid() . '.' . $image->getClientOriginalExtension();
-        //     $image->storeAs('public/products/images', $imageName);
-        // }
-        // Image::create([
-        //     'name' => $imageName,
-        //     'product_id' => $p_id->id,
-        // ]);
+
 
         Session()->flash('msg','Product added successfully');
         return redirect()->back();
@@ -69,7 +56,7 @@ class ProductController extends Controller
         return view('products.image_product', compact('images'));
     }
     public function delete_product($id){
-        $product = Product::findOrFail($id);
+        $product = Product::find($id);
         $images=Image::where('product_id', $id)->get();
         foreach ($images as $image){
             $deleteOldImage = 'storage/products/images/' . $image->name;
@@ -84,7 +71,7 @@ class ProductController extends Controller
         return redirect()->back();
     }
     public function edit_product($id){
-        $product = Product::findOrFail($id);
+        $product = Product::find($id);
         $images = Image::with('product')->where('product_id',$id);
         $categories = Category::all();
         return view('products.edit_product', compact('product','images','categories'));
@@ -125,6 +112,9 @@ class ProductController extends Controller
         Session()->flash('msg', 'Product Updated Success');
         return redirect()->back();
     }
+    // public function images_destroy(){
+    //     return('working');
+    // }
 }
 
 
