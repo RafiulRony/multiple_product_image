@@ -62,7 +62,7 @@
                         </div>
                         <div class="form-group mb-3">
                             @foreach ($product->images as $image)
-                                <img style="width:50px" src="{{ asset('storage/products/images/'.$image->name) }}">
+                                <img style="width:50px" src="{{ asset($image->name) }}">
                             @endforeach
                         </div>
                         <div>
@@ -71,17 +71,6 @@
                         </div>
 
 
-                        {{-- @foreach($product->images as $image)
-                            <div>
-                                <img src="{{ asset('storage/products/images/'.$image->name) }}" alt="{{ $image->name }}">
-                                <form action="{{ route('images.destroy', $image->id) }}" method="POST">
-                                    @csrf
-                                    @method('DELETE')
-                                    <input type="hidden" name="image_id" value="{{ $image->id }}">
-                                    <button type="submit">Delete</button>
-                                </form>
-                            </div>
-                        @endforeach --}}
 
 
 

@@ -44,10 +44,13 @@
                                 <td>{{ $product->color }}</td>
                                 <td>{{ $product->size }}</td>
                                 <td>
-                                    @foreach ($product->images as $image)
-                                        <img style="width:50px" src="{{ asset('storage/products/images/'.$image->name) }}">
-                                    @endforeach
+                                    @forelse ($product->images as $image)
+                                        <img style="width:50px" src="{{ asset('storage/'.$image->name) }}">
+                                    @empty
+                                    {{ __('No Products found') }}
+                                    @endforelse
                                 </td>
+
                                 <td>
                                     <a class="btn btn-success btn-sm" href="{{ route('edit.product', $product->id) }}">{{ __('Edit') }}</a>
                                     <a class="btn btn-danger btn-sm" href="{{ route('delete.product', $product->id) }}">{{ __('Delete') }}</a>

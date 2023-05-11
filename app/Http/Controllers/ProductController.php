@@ -7,6 +7,8 @@ use App\Models\Image;
 use App\Models\Product;
 use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Http\File;
 
 class ProductController extends Controller
 {
@@ -38,14 +40,19 @@ class ProductController extends Controller
         ]);
         $images = $request->file('images');
         foreach ($images as $image) {
-            $imageName = time() . '_' . uniqid() . '.' . $image->getClientOriginalExtension();
-            $image->storeAs('public/products/images', $imageName);
+            // $imageName = time() . '_' . uniqid() . '.' . $image->getClientOriginalExtension();
+            // $image->storeAs('public/products/images', $imageName);
+            $path = Storage::disk('public')->put('products/images', $image);
 
             Image::create([
-                'name'=>$imageName,
+                'name' => $path,
                 'product_id' => $p_id->id,
             ]);
+            //  dd($path);
         }
+
+
+
 
 
         Session()->flash('msg','Product added successfully');
@@ -59,10 +66,8 @@ class ProductController extends Controller
         $product = Product::find($id);
         $images=Image::where('product_id', $id)->get();
         foreach ($images as $image){
-            $deleteOldImage = 'storage/products/images/' . $image->name;
-            if (file_exists($deleteOldImage)) {
-                @unlink(public_path($deleteOldImage));
-            }
+            $deleteOldImage = $image->name;
+            @unlink(public_path($deleteOldImage));
         }
 
         $product->images()->delete();
@@ -87,7 +92,7 @@ class ProductController extends Controller
         ]);
         $images=Image::where('product_id', $id)->get();
         foreach ($images as $image){
-            $deleteOldImage = 'storage/products/images/' . $image->name;
+            $deleteOldImage = $image->name;
             if (file_exists($deleteOldImage)) {
                 @unlink(public_path($deleteOldImage));
             }
@@ -99,13 +104,15 @@ class ProductController extends Controller
             'color' => $request->color,
             'size' => $request->size,
         ]);
+
+
         $images = $request->file('images');
         foreach ($images as $image) {
             $imageName = time() . '_' . uniqid() . '.' . $image->getClientOriginalExtension();
             $image->storeAs('public/products/images', $imageName);
 
             Image::create([
-                'name'=>$imageName,
+                'name' => 'storage/products/images/' . $imageName,
                 'product_id' => $id,
             ]);
         }
@@ -115,6 +122,7 @@ class ProductController extends Controller
     // public function images_destroy(){
     //     return('working');
     // }
+
 }
 
 

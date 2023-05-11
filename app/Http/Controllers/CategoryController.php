@@ -75,6 +75,8 @@ class CategoryController extends Controller
     }
     public function check(){
 
+        Storage::disk('local')->put('example.txt', 'Contents');
+
         // $numbers = range(1, 100);
 
         $numbers = [];
