@@ -73,7 +73,7 @@ class ProductController extends Controller
         $product->images()->delete();
         $product->delete();
         Session()->flash('msg', 'Product deleted');
-        return redirect()->back();
+        return redirect()->back()->setStatusCode(302);
     }
     public function edit_product($id){
         $product = Product::find($id);

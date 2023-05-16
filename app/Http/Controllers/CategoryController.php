@@ -11,8 +11,10 @@ use Illuminate\Support\Facades\Storage;
 class CategoryController extends Controller
 {
     public function all_categories(){
-        $categories = Category::all();
 
+
+
+        $categories = Category::all();
         return view('categories',compact('categories'));
     }
     public function add_new_category(){
@@ -26,7 +28,7 @@ class CategoryController extends Controller
         $imageName = '';
         // $image=$request->image;
         if ($request->hasFile('image')){
-            $path = $request->file('image')->store('public/categories/images');
+            // $path = $request->file('image')->store('public/categories/images');
             $imageName = time().'_'.uniqid().'.'.$request->image->getClientOriginalExtension();
             $request->image->move('category/images',$imageName);
             // Storage::move($path, 'public/categories/images/' . $imageName);

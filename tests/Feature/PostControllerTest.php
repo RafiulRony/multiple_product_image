@@ -14,7 +14,7 @@ class PostControllerTest extends TestCase
     {
         // Post::factory()->count(15)->create();
 
-        // $posts = (new PostController)->index();
+        // $posts = Post::all();
 
         // $this->assertEquals(15, $posts->count());
     }
